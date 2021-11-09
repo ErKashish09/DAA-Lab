@@ -1,0 +1,51 @@
+#include<iostream>
+#include<conio.h>
+using namespace std;
+
+void findMaxChar(char arr[],int n)
+{
+    int res[26];
+    for(int i=0;i<=26-1;i++)
+    {
+        res[i]=0;
+    }
+    for(int i=0;i<=n-1;i++)
+    {
+        int temp=arr[i]-'0';
+        res[temp-49]+=1;
+    }
+    char ans[1];
+    ans[0]= '0';
+    int maxi=0;
+    for(int i=0;i<=26-1;i++)
+    {
+        if(maxi<res[i] && res[i]!=1)
+        {
+            char str='a'+i;
+            ans[0]=str;
+            maxi=res[i];
+        }
+    }
+    if(ans[0]=='0' && n>=1)
+    {
+        cout<<"No Duplicates Present"<<endl;
+        return;
+    }
+    cout<<ans[0]<<" - "<<maxi<<endl;
+}
+
+int main(){
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int n;
+        cin>>n;
+        char arr[n];
+        for(int i=0;i<=n-1;i++)
+        {
+            cin>>arr[i];
+        }
+        findMaxChar(arr,n);
+    }
+}
